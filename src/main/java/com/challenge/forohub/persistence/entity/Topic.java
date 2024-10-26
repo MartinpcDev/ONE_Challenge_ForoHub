@@ -31,12 +31,11 @@ public class Topic {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String title;
-  private String message;
+  private String curso;
   @Enumerated(EnumType.STRING)
   private TopicStatus status;
   @CreationTimestamp
   private LocalDate createdAt;
-  private String curso;
   @ManyToOne
   @JoinColumn(name = "user_id", nullable = false)
   private User user;
