@@ -1,4 +1,4 @@
-package com.challenge.forohub.persistence.dto.topico.response;
+package com.challenge.forohub.persistence.dto.user.response;
 
 public record UserResponse(
     Long id,

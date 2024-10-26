@@ -1,4 +1,4 @@
-package com.challenge.forohub.persistence.dto.topico.request;
+package com.challenge.forohub.persistence.dto.message.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
