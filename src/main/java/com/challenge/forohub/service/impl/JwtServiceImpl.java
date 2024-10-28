@@ -2,6 +2,7 @@ package com.challenge.forohub.service.impl;
 
 import com.challenge.forohub.persistence.entity.User;
 import com.challenge.forohub.service.JwtService;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -21,18 +22,21 @@ public class JwtServiceImpl implements JwtService {
 
   @Override
   public String extractUsername(String token) {
+    return getClaimsFromToken(token).getSubject();
+  }
+
+  private Claims getClaimsFromToken(String token) {
     return Jwts.parser()
         .verifyWith(getSignInKey())
         .build()
         .parseSignedClaims(token)
-        .getPayload()
-        .getSubject();
+        .getPayload();
   }
 
   @Override
   public String generateToken(User user) {
     return Jwts.builder()
-        .claims(Map.of("name", user.getName(), "role", user.getRole()))
+        .claims(Map.of("id", user.getId()))
         .subject(user.getUsername())
         .issuedAt(new Date(System.currentTimeMillis()))
         .expiration(new Date(System.currentTimeMillis() + jwtExpiration))

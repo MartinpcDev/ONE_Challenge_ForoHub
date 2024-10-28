@@ -1,7 +1,6 @@
 package com.challenge.forohub.config;
 
 import com.challenge.forohub.exceptions.InvalidAuthException;
-import com.challenge.forohub.persistence.entity.User;
 import com.challenge.forohub.persistence.repository.UserRepository;
 import com.challenge.forohub.service.JwtService;
 import jakarta.servlet.FilterChain;
@@ -9,7 +8,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Optional;
 import lombok.NonNull;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -39,18 +37,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
       @NonNull HttpServletRequest request,
       @NonNull HttpServletResponse response,
       @NonNull FilterChain filterChain) throws ServletException, IOException {
-    if (request.getServletPath().startsWith("/api/v1/auth")) {
-      filterChain.doFilter(request, response);
-    }
+
     String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
     if (authHeader != null && authHeader.startsWith("Bearer ")) {
       String token = authHeader.substring(7);
       String username = jwtService.extractUsername(token);
-      Optional<User> userExist = userRepository.findByUsernameIgnoreCase(username);
-      if (userExist.isPresent()) {
-        final boolean isTokenValid = jwtService.isTokenValid(token, userExist.get());
-        if (isTokenValid) {
-          final UserDetails userDetails = this.userDetailsService.loadUserByUsername(token);
+      userRepository.findByUsernameIgnoreCase(username).ifPresentOrElse(user -> {
+        if (jwtService.isTokenValid(token, user)) {
+          UserDetails userDetails = userDetailsService.loadUserByUsername(username);
           UsernamePasswordAuthenticationToken authtoken = new UsernamePasswordAuthenticationToken(
               userDetails,
               null,
@@ -61,9 +55,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         } else {
           throw new InvalidAuthException("Token invalid");
         }
-      } else {
-        throw new InvalidAuthException("Token invalid");
-      }
+      }, () -> {
+        throw new InvalidAuthException("User not found");
+      });
     }
 
     filterChain.doFilter(request, response);
