@@ -1,10 +1,12 @@
 package com.challenge.forohub.service.impl;
 
 import com.challenge.forohub.exceptions.InvalidAuthException;
+import com.challenge.forohub.exceptions.UserNotFoundException;
 import com.challenge.forohub.persistence.dto.auth.request.LoginRequest;
 import com.challenge.forohub.persistence.dto.auth.request.RegisterRequest;
 import com.challenge.forohub.persistence.dto.auth.response.AuthResponse;
 import com.challenge.forohub.persistence.dto.auth.response.RegisterResponse;
+import com.challenge.forohub.persistence.dto.user.response.UserResponse;
 import com.challenge.forohub.persistence.entity.User;
 import com.challenge.forohub.persistence.mapper.UserMapper;
 import com.challenge.forohub.persistence.repository.UserRepository;
@@ -60,4 +62,11 @@ public class AuthServiceImpl implements AuthService {
 
     return new RegisterResponse("Registrado correctamente");
   }
+
+  @Override
+  public UserResponse profile(Long id) {
+    return UserMapper.toUserDto(userRepository.findById(id)
+        .orElseThrow(() -> new UserNotFoundException("User nor found")));
+  }
+
 }

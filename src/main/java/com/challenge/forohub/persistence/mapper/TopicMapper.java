@@ -3,6 +3,7 @@ package com.challenge.forohub.persistence.mapper;
 import com.challenge.forohub.persistence.dto.topico.request.TopicRequest;
 import com.challenge.forohub.persistence.dto.topico.response.TopicResponse;
 import com.challenge.forohub.persistence.entity.Topic;
+import com.challenge.forohub.persistence.entity.TopicStatus;
 import java.util.List;
 
 public class TopicMapper {
@@ -39,6 +40,7 @@ public class TopicMapper {
     Topic topic = new Topic();
     topic.setTitle(topicDto.title());
     topic.setCurso(topicDto.curso());
+    topic.setStatus(TopicStatus.PUBLIC);
 
     return topic;
   }

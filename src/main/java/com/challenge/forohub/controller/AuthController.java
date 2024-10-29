@@ -44,6 +44,6 @@ public class AuthController {
   @PreAuthorize("isAuthenticated()")
   public void profile(@AuthenticationPrincipal UserDetails userDetails) {
     Long id = ((User) userDetails).getId();
-    System.out.println(id);
+    System.out.println(authService.profile(id));
   }
 }
