@@ -5,6 +5,7 @@ import com.challenge.forohub.persistence.dto.topico.response.TopicResponse;
 import com.challenge.forohub.persistence.entity.User;
 import com.challenge.forohub.service.ITopicService;
 import com.challenge.forohub.utils.DeleteResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/topic")
 @PreAuthorize("isAuthenticated()")
+@SecurityRequirement(name = "bearer-key")
 public class TopicController {
 
   private final ITopicService topicService;
