@@ -1,7 +1,7 @@
 package com.challenge.forohub.service.impl;
 
 import com.challenge.forohub.persistence.entity.User;
-import com.challenge.forohub.service.JwtService;
+import com.challenge.forohub.service.IJwtService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JwtServiceImpl implements JwtService {
+public class JwtServiceImpl implements IJwtService {
 
   @Value("${api.security.token.secret}")
   private String secretKey;

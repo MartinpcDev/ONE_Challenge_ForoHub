@@ -2,7 +2,7 @@ package com.challenge.forohub.service;
 
 import com.challenge.forohub.persistence.entity.User;
 
-public interface JwtService {
+public interface IJwtService {
 
   String extractUsername(String token);
 

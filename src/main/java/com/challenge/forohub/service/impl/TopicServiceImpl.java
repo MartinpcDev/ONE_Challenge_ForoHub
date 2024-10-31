@@ -9,7 +9,7 @@ import com.challenge.forohub.persistence.entity.User;
 import com.challenge.forohub.persistence.mapper.TopicMapper;
 import com.challenge.forohub.persistence.repository.TopicRepository;
 import com.challenge.forohub.persistence.repository.UserRepository;
-import com.challenge.forohub.service.TopicService;
+import com.challenge.forohub.service.ITopicService;
 import com.challenge.forohub.utils.DeleteResponse;
 import jakarta.transaction.Transactional;
 import java.util.List;
@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TopicServiceImpl implements TopicService {
+public class TopicServiceImpl implements ITopicService {
 
   private final TopicRepository topicRepository;
   private final UserRepository userRepository;

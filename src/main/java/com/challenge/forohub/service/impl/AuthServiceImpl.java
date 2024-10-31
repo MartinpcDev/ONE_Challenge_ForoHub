@@ -10,7 +10,7 @@ import com.challenge.forohub.persistence.dto.user.response.UserResponse;
 import com.challenge.forohub.persistence.entity.User;
 import com.challenge.forohub.persistence.mapper.UserMapper;
 import com.challenge.forohub.persistence.repository.UserRepository;
-import com.challenge.forohub.service.AuthService;
+import com.challenge.forohub.service.IAuthService;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,7 +19,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthServiceImpl implements AuthService {
+public class AuthServiceImpl implements IAuthService {
 
   private final UserRepository userRepository;
   private final JwtServiceImpl jwtService;

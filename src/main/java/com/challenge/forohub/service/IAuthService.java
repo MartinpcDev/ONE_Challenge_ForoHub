@@ -6,7 +6,7 @@ import com.challenge.forohub.persistence.dto.auth.response.AuthResponse;
 import com.challenge.forohub.persistence.dto.auth.response.RegisterResponse;
 import com.challenge.forohub.persistence.dto.user.response.UserResponse;
 
-public interface AuthService {
+public interface IAuthService {
 
   AuthResponse login(LoginRequest request);
 

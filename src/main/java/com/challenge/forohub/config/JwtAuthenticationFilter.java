@@ -2,7 +2,7 @@ package com.challenge.forohub.config;
 
 import com.challenge.forohub.exceptions.InvalidAuthException;
 import com.challenge.forohub.persistence.repository.UserRepository;
-import com.challenge.forohub.service.JwtService;
+import com.challenge.forohub.service.IJwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,11 +21,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-  private final JwtService jwtService;
+  private final IJwtService jwtService;
   private final UserRepository userRepository;
   private final UserDetailsService userDetailsService;
 
-  public JwtAuthenticationFilter(JwtService jwtService, UserRepository userRepository,
+  public JwtAuthenticationFilter(IJwtService jwtService, UserRepository userRepository,
       UserDetailsService userDetailsService) {
     this.jwtService = jwtService;
     this.userRepository = userRepository;

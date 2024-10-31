@@ -3,7 +3,7 @@ package com.challenge.forohub.controller;
 import com.challenge.forohub.persistence.dto.topico.request.TopicRequest;
 import com.challenge.forohub.persistence.dto.topico.response.TopicResponse;
 import com.challenge.forohub.persistence.entity.User;
-import com.challenge.forohub.service.TopicService;
+import com.challenge.forohub.service.ITopicService;
 import com.challenge.forohub.utils.DeleteResponse;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -27,10 +27,10 @@ import org.springframework.web.bind.annotation.RestController;
 @PreAuthorize("isAuthenticated()")
 public class TopicController {
 
-  private final TopicService topicService;
+  private final ITopicService topicService;
 
   @Autowired
-  public TopicController(TopicService topicService) {
+  public TopicController(ITopicService topicService) {
     this.topicService = topicService;
   }
 

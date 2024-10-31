@@ -5,7 +5,7 @@ import com.challenge.forohub.persistence.dto.auth.request.RegisterRequest;
 import com.challenge.forohub.persistence.dto.auth.response.AuthResponse;
 import com.challenge.forohub.persistence.dto.auth.response.RegisterResponse;
 import com.challenge.forohub.persistence.entity.User;
-import com.challenge.forohub.service.AuthService;
+import com.challenge.forohub.service.IAuthService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,10 +23,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 public class AuthController {
 
-  private final AuthService authService;
+  private final IAuthService authService;
 
   @Autowired
-  public AuthController(AuthService authService) {
+  public AuthController(IAuthService authService) {
     this.authService = authService;
   }
 

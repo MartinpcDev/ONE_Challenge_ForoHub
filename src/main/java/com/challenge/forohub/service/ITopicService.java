@@ -5,7 +5,7 @@ import com.challenge.forohub.persistence.dto.topico.response.TopicResponse;
 import com.challenge.forohub.utils.DeleteResponse;
 import java.util.List;
 
-public interface TopicService {
+public interface ITopicService {
 
   TopicResponse createTopic(Long userId, TopicRequest request);
 
