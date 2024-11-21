@@ -48,3 +48,7 @@ api.security.token.expiration=${JWT_EXPIRATION}
 3. Configurar en las variables de entorno en los perfiles de configuracion en IntelliJ IDEA
 
 ![perfiles](/src/main/resources/static/envconfig.png)
+
+## Badge de Challenge
+
+![badge](/src/main/resources/static/Badge-Spring.png)
